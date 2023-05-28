@@ -1,11 +1,14 @@
 __pycache__/
 
+
 # Exclude locally installed dependencies
 venv/
 
 # Exclude "build-time" ignore files.
 .dockerignore
 .gcloudignore
+.github
+
 
 # Exclude git history and configuration.
 .gitignore
