@@ -5,11 +5,10 @@ uvicorn>=0.15.0,<0.16.0
 accelerate>=0.16.0,<1
 transformers[torch]>=4.28.1,<5
 torch>=1.13.1,<2
-bitsandbytes
-scipy>=1.7.1,<2
-torch>=1.13.1,<2
-datasets
 
+datasets
+bitsandbytes
+scipy
 # sentencepiece
 # triton
 # einops
