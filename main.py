@@ -15,7 +15,7 @@ from transformers import *
 import torch
 from transformers import pipeline
 
-generate_text = pipeline(model="databricks/dolly-v2-3b", torch_dtype=torch.bfloat16, trust_remote_code=True, device_map="auto")
+generate_text = pipeline(model="databricks/dolly-v2-3b",trust_remote_code=True, torch_dtype=torch.bfloat16, device_map="auto")
 
 class Prediction(BaseModel):
   revised: str 
@@ -49,9 +49,6 @@ AIP_PREDICT_ROUTE = os.environ.get('AIP_PREDICT_ROUTE', '/predict')
 async def health():
     return {'health': 'ok'}
   
-
-
-
 @app.post(AIP_PREDICT_ROUTE, 
           response_model=Predictions,
           response_model_exclude_unset=True)
@@ -62,7 +59,7 @@ async def predict(request: Request):
   prompt = body['instances'][0]['text']
   print(prompt)
   # prediction
-  res = generate_text("Explain to me the difference between nuclear fission and fusion.")
+  res = generate_text(prompt)
   answer = res[0]["generated_text"]
   print(answer)
 
