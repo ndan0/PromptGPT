@@ -1,5 +1,6 @@
 aerobic-gantry-387923-f66274c1d04a.json
-
+dolly-v2-3b/
+offload/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

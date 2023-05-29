@@ -1,4 +1,7 @@
 __pycache__/
+offload/
+.deploy_to_vertex.sh
+dolly-v2-3b/
 
 
 # Exclude locally installed dependencies
