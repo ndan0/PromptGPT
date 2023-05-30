@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model_folder = "models/pythia-70m"
+model_folder = "test-pythia-70m"
 
 from transformers import GPTNeoXForCausalLM, AutoTokenizer
 
@@ -51,7 +51,7 @@ async def predict(request: Request):
   answer = tokenizer.decode(tokens[0])
   # post-processing
 
-  return {"predictions": [{"revised": "answer","confidence": 1.0}]}
+  return {"predictions": [{"revised": answer,"confidence": 1.0}]}
 
 
 if __name__ == "__main__":
