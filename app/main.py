@@ -11,13 +11,19 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 model_folder = "test-pythia-70m"
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 from transformers import GPTNeoXForCausalLM, AutoTokenizer
 
 model = GPTNeoXForCausalLM.from_pretrained(
   model_folder,
   revision="step3000",
   cache_dir="./pythia-70m-deduped/step3000",
+  device_map = "auto" # you are moving the device to the GPU
+  
 )
+
+print(model.device)
 
 tokenizer = AutoTokenizer.from_pretrained(
   model_folder,
@@ -26,8 +32,13 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 
 inputs = tokenizer("Hello, I am", return_tensors="pt")
-tokens = model.generate(**inputs)
-tokenizer.decode(tokens[0])
+input_ids = inputs["input_ids"]
+attention_mask = inputs.get("attention_mask", None)
+tokens = model.generate(
+  input_ids = input_ids.to(model.device),
+  attention_mask=attention_mask.to(model.device) if attention_mask is not None else None,
+)
+tokenizer.decode(tokens[0] , skip_special_tokens=True)
 
 ####################
 # API Definition
@@ -47,8 +58,13 @@ async def predict(request: Request):
   print(prompt)
   # prediction
   inputs = tokenizer(prompt, return_tensors="pt")
-  tokens = model.generate(**inputs)
-  answer = tokenizer.decode(tokens[0])
+  inpuit_ids = inputs["input_ids"]
+  attention_mask = inputs.get("attention_mask", None)
+  tokens = model.generate(
+    input_ids = inpuit_ids.to(model.device),
+    attention_mask=attention_mask.to(model.device) if attention_mask is not None else None,
+  )
+  answer = tokenizer.decode(tokens[0], skip_special_tokens=True)
   # post-processing
 
   return {"predictions": [{"revised": answer,"confidence": 1.0}]}
