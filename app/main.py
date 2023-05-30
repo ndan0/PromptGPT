@@ -32,9 +32,10 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 
 inputs = tokenizer("Hello, I am", return_tensors="pt")
+input_ids = inputs["input_ids"]
 attention_mask = inputs.get("attention_mask", None)
 tokens = model.generate(
-  input_ids = inputs.input_ids.to(model.device),
+  input_ids = input_ids.to(model.device),
   attention_mask=attention_mask.to(model.device) if attention_mask is not None else None,
 )
 tokenizer.decode(tokens[0] , skip_special_tokens=True)
