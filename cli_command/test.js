@@ -20,3 +20,5 @@ fetch('http://127.0.0.1:8000/predict', {
     console.error('Error:', error);
     // Handle any errors that occur
   });
+
+

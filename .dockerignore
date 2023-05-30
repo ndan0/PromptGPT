@@ -1,8 +1,8 @@
 __pycache__/
 offload/
 .deploy_to_vertex.sh
-dolly-v2-3b/
-implement-demystify_prompt.ipynb
+implement-demystify_prompt.ipynb/
+cli_command/
 
 # Exclude locally installed dependencies
 venv/

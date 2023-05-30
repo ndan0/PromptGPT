@@ -1,14 +1,15 @@
-fastapi>=0.68.0,<0.69.0
-pydantic>=1.8.0,<2.0.0
-uvicorn>=0.15.0,<0.16.0
+joblib~=1.0
+numpy~=1.20
+scikit-learn~=0.24
+google-cloud-storage>=1.26.0,<2.0.0dev
 
 accelerate>=0.16.0,<1
 transformers[torch]>=4.28.1,<5
 torch>=1.13.1,<2
 
-datasets
-bitsandbytes
-scipy
+# datasets
+# bitsandbytes
+# scipy
 # sentencepiece
 # triton
 # einops
