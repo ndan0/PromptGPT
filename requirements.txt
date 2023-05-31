@@ -5,13 +5,11 @@ google-cloud-storage>=1.26.0,<2.0.0dev
 
 accelerate>=0.16.0,<1
 transformers[torch]>=4.28.1,<5
-torch>=1.13.1,<2
-
-# datasets
-# bitsandbytes
-# scipy
-# sentencepiece
-# triton
-# einops
-# safetensors
-# langchain
+torch>=1.13.1
+torch>=1.13
+datasets>=1.14.0,<2
+bitsandbytes
+triton
+einops
+safetensors
+langchain
