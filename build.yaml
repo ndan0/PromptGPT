@@ -10,11 +10,11 @@ steps:
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-central1-docker.pkg.dev/aerobic-gantry-387923/promptgpt/promptgpt_api']
-  id: 'push-image'
-# Deploy to Vertex AI
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-- args: ['ai', 'models', 'upload', '--region=us-central1', '--display-name=prompt_gpt',  '--container-image-uri=us-central1-docker.pkg.dev/aerobic-gantry-387923/promptgpt/promptgpt_api']
-  waitFor: ['push-image']
+#   id: 'push-image'
+# # Deploy to Vertex AI
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   args: ['aiplatform', 'models', 'upload', '--region=us-central1', '--display-name=prompt_gpt',  '--container-image-uri=us-central1-docker.pkg.dev/aerobic-gantry-387923/promptgpt/promptgpt_api']
+#   waitFor: ['push-image']
 
 images:
 - us-central1-docker.pkg.dev/aerobic-gantry-387923/promptgpt/promptgpt_api
