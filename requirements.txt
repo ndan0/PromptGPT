@@ -2,9 +2,6 @@ flask
 flask-cors
 gunicorn
 
-ipykernel
-ipython
-
 joblib
 numpy
 scikit-learn

@@ -1,5 +1,3 @@
-from IPython import get_ipython
-
 #PRETRAINED_MODEL_NAME_OR_PATH = "models/dolly_base"
 PRETRAINED_MODEL_NAME_OR_PATH = "databricks/dolly-v2-3b"
 
@@ -7,30 +5,7 @@ PRETRAINED_MODEL_NAME_OR_PATH = "databricks/dolly-v2-3b"
 class Pipeline:
 
     def __init__(self):
-        #!/usr/bin/env python
-        # coding: utf-8
-
-        # # Download all the Python Libraries
-
-        # In[1]:
-
-
-        # Check if the computer is on google colab
-        # import sys
-        # if 'google.colab' in sys.modules:
-        #     print("Running on Google Colab")
-        #     get_ipython().system('pip install rich')
-        #     get_ipython().system('pip install -q -U bitsandbytes')
-        #     get_ipython().system('pip install -q -U git+https://github.com/huggingface/transformers.git')
-        #     get_ipython().system('pip install -q -U git+https://github.com/huggingface/peft.git')
-        #     get_ipython().system('pip install -q -U git+https://github.com/huggingface/accelerate.git')
-        #     get_ipython().system('pip install datasets')
-        #     get_ipython().system('pip install langchain')
-        #     get_ipython().system('pip install session-info')
-
-        # else:
-        #     print("Not running on Google Colab")
-
+       
         from rich import print
         import logging
         from pathlib import Path
@@ -44,18 +19,10 @@ class Pipeline:
         # 1. You can check the GPU in the Google Colab by clicking  and efficieny
         # 2. Check if the GPU can use bfloat16 most effective as most model are pre-trained with bfloat16
 
-        # In[2]:
-
-
         import torch
         from rich import print
-        try:
-            get_ipython().system('nvidia-smi')
-        except:
-            pass
         
         if torch.cuda.is_available():
-            get_ipython().system('nvidia-smi')
             print(f"GPU: {torch.cuda.get_device_name(0)}")
             print("Cuda capability: ", torch.cuda.get_device_capability(0))
             '''
@@ -65,8 +32,6 @@ class Pipeline:
 
 
         # # Set the Seed Environment of the Notebook to ensure the reproducibility
-
-        # In[3]:
 
 
         from transformers import set_seed
@@ -78,8 +43,6 @@ class Pipeline:
 
         # # Download the Tokenizers
         # 1. We are suing Dolly model which was trained on the Pythia model. Instead we are recreating the dollvy tokenizer from the Pythia tokenizer
-
-        # In[4]:
 
 
         from transformers import AutoTokenizer
@@ -107,8 +70,6 @@ class Pipeline:
 
         # ## 4 Bit Configuration
 
-        # In[5]:
-
 
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
@@ -123,8 +84,6 @@ class Pipeline:
 
         # ## Download the LM Models
         # Then we have to apply some preprocessing to the model to prepare it for training. For that use the `prepare_model_for_kbit_training` method from PEFT.
-
-        # In[6]:
 
 
         from transformers import AutoModelForCausalLM
@@ -163,8 +122,6 @@ class Pipeline:
 
         # # Text Generation COnfiguration
 
-        # In[7]:
-
 
         from transformers import AutoModelForCausalLM, GenerationConfig
         import random
@@ -182,8 +139,6 @@ class Pipeline:
 
         # ## Download the adaper config if not present
 
-        # In[8]:
-
 
         from peft import PeftConfig, PeftModel
 
@@ -192,8 +147,6 @@ class Pipeline:
 
 
         # ## Combine the Model and Adapter
-
-        # In[9]:
 
 
         from peft import PeftConfig, PeftModel
@@ -215,8 +168,6 @@ class Pipeline:
 
 
         # ## Create the Instruction Generation Pipeline
-
-        # In[10]:
 
 
         import logging
@@ -450,7 +401,6 @@ class Pipeline:
 
         # ## Langchain Prompt with Hugging Face Pipeline
 
-        # In[17]:
 
 
         from langchain import PromptTemplate, LLMChain
@@ -475,43 +425,6 @@ class Pipeline:
         GENERATE_PROMPT_INSTRUCTION = "Given a prompt from the user that was meant to be feed into a GPT style model , rewrite the prompt that will improve the quality of the generated text."
         answer = self.llm_context_chain.predict(instruction = GENERATE_PROMPT_INSTRUCTION,context=userInput).lstrip()
         return answer
-
-
-
-        # # In[21]:
-
-
-        # answer = generatePrompt("How to make an instagram post?")
-
-
-        # # In[16]:
-
-
-        # print(llm_chain.predict(instruction="Explain to me the difference between nuclear fission and fusion.").lstrip())
-
-        # context = """George Washington (February 22, 1732[b] – December 14, 1799) was an American military officer, statesman,
-        # and Founding Father who served as the first president of the United States from 1789 to 1797."""
-
-        # print(llm_context_chain.predict(instruction="When was George Washington president?", context=context).lstrip())
-
-        # print(
-        #     llm_context_chain.predict(
-        #         instruction = GENERATE_PROMPT_INSTRUCTION,
-        #         context="A product description on an E-commerce website")
-        #     .lstrip()
-        # )
-
-
-        # # Hyperparameter Tuning
-
-        # ## Model Init
-
-        # # References
-        # [1] [Dolly Github](https://github.com/databrickslabs/dolly/blob/5021d941d95dddcf1f00d978d7f944709873f419/training/trainer.py#L138)
-        # [2] https://gist.github.com/Birch-san/57878c4a27cf34f57d3e861865a7d0a2
-        # [3] https://github.com/artidoro/qlora/blob/main/qlora.py 
-        # [4] https://github.com/tloen/alpaca-lora/blob/main/finetune.py 
-
 
 
 
