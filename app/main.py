@@ -449,9 +449,6 @@ llm_context_chain = LLMChain(llm=hf_pipeline, prompt=prompt_with_context)
 GENERATE_PROMPT_INSTRUCTION = "Given a prompt from the user that was meant to be feed into a GPT style model , rewrite the prompt that will improve the quality of the generated text."
         
 
-print(llm_context_chain.predict(instruction = GENERATE_PROMPT_INSTRUCTION,context="Hello World").lstrip())
-
-
 
 # API Definition
 app = Flask(__name__)
@@ -460,22 +457,23 @@ CORS(app)
 
 @app.route("/health")
 def is_alive():
-    print("/isalive request")
     status_code = Response(status=200)
     return status_code
 
 
 @app.route("/predict", methods=["POST"])
 def predict():
-  print("/predict request")
   body = request.get_json()
 
   user_prompt = body['instances'][0]['text']
-  print(user_prompt)
+  
   answer = llm_context_chain.predict(instruction = GENERATE_PROMPT_INSTRUCTION,context=user_prompt).lstrip()
+  
+  print(user_prompt)
+  print(answer)
   # post-processing
 
-  return {"predictions": [{"revised": answer,"confidence": 1.0}]}
+  return {"predictions": [{"revised": answer}]}
 
 
 if __name__ == "__main__":
