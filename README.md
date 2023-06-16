@@ -1,4 +1,6 @@
 # PromptGPT
+- You can access our [website front end repo](https://github.com/arihanv/PromptGPT) or our [extension](https://github.com/arihanv/PromptGPT-Ext)
+
 - If you are interested in training the model. You can access it in the [training folder](https://github.com/DanNguyenN/PromptGPT/tree/main/training)
 
 
