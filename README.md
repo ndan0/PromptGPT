@@ -1,7 +1,7 @@
 # PromptGPT
 ### Accessing
-You can access the model in website here: https://example.com
-You can access the model in Google Colab here: https://colab.research.google.com/drive/1fjKvM7X2oZc84I6dy-8_U_a3cRJNl5R9?usp=sharing
+- You can access the model in website here: https://example.com
+- You can access the model in Google Colab here: https://colab.research.google.com/drive/1fjKvM7X2oZc84I6dy-8_U_a3cRJNl5R9?usp=sharing
 
 ### Front-end
 - You can access our [website front end repo](https://github.com/arihanv/PromptGPT) or our [extension](https://github.com/arihanv/PromptGPT-Ext)
