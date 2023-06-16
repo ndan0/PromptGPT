@@ -1,4 +1,5 @@
 __pycache__/
+training/
 offload/
 .deploy_to_vertex.sh
 implement-demystify_prompt.ipynb/

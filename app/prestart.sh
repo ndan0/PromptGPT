@@ -1,2 +1,4 @@
 #!/bin/bash
-export PORT=$AIP_HTTP_PORT
+export PORT=8080
+export NVIDIA_VISIBLE_DEVICES=all
+
