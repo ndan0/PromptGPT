@@ -1,4 +1,6 @@
 # PromptGPT
+- If you are interested in training the model. You can access it in the [training folder](https://github.com/DanNguyenN/PromptGPT/tree/main/training)
+
 
 - You can build the container and run it locally assume you have GPU. This is for the backend only. 
     - You can test it by editing the inferenceTest.json and then do curl command to 0.0.0.0:8080/predict
