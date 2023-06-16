@@ -6,7 +6,7 @@
 
 - You can build the container and run it locally assume you have GPU. This is for the backend only. 
     - You have to download dolly-v2-3b model locally and put it in app/models folder
-        - You can also change ```PRETRAINED_MODEL_NAME_OR_PATH ``` in [app/main.py](https://github.com/DanNguyenN/PromptGPT/blob/main/app/main.py)
+        - You can also change ```PRETRAINED_MODEL_NAME_OR_PATH ``` to ```PRETRAINED_MODEL_NAME_OR_PATH = "databricks/dolly-v2-3b"``` in [app/main.py](https://github.com/DanNguyenN/PromptGPT/blob/main/app/main.py)
     - You can test it by editing the inferenceTest.json and then do curl command using that json file to 0.0.0.0:8080/predict
 - If you want to deploy on the cloud, 
     - upload the dolly-v2-3b model(https://huggingface.co/databricks/dolly-v2-3b) to Google Cloud Storage
