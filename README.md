@@ -3,7 +3,7 @@
 
 
 - You can build the container and run it locally assume you have GPU. This is for the backend only. 
-    - You can test it by editing the inferenceTest.json and then do curl command to 0.0.0.0:8080/predict
+    - You can test it by editing the inferenceTest.json and then do curl command using that json file to 0.0.0.0:8080/predict
 - If you want to deploy on the cloud, 
     - upload the dolly-v2-3b model(https://huggingface.co/databricks/dolly-v2-3b) to Google Cloud Storage
     - fix the first step in build.yaml to be your GCS bucket
