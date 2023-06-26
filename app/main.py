@@ -89,6 +89,10 @@ print(dolly_v2_tokenizer)
 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+import random
+
+
+
 
 model_id = "EleutherAI/gpt-neox-20b"
 bnb_config = BitsAndBytesConfig(
@@ -156,14 +160,14 @@ print(model)
 from transformers import AutoModelForCausalLM, GenerationConfig
 import random
 generation_config =  GenerationConfig(
-    max_new_tokens = 256, # The maximum numbers of tokens to generate, ignoring the number of tokens in the prompt.
+    max_new_tokens = 512 , # The maximum numbers of tokens to generate, ignoring the number of tokens in the prompt.
     num_beams = 1, # 1 means no beam search instead greedy search
-    temperature = random.uniform(0.01 , .98), # Parameters for manipulation of the model output logits
+    temperature = .01 , # Parameters for manipulation of the model output logits
     top_p = 0.92, # Parameters for manipulation of the model output logits
     top_k = 50, # Parameters to only select the top-k tokens, instead of sampling from the distribution
     do_sample = True ,# select a random token from the top-k tokens (set to 0 to disable top-k sampling) instead of choosing the one with the highest probability
     use_cache = True, # Whether or not the model should use the past last key/values attentions (if applicable to the model) to speed up decoding.
-    repetition_penalty = 1.02, # The parameter for repetition penalty. 1.0 means no penalty. See this paper for more details.
+    repetition_penalty = 1.1, # The parameter for repetition penalty. 1.0 means no penalty. See this paper for more details.
 )
 
 
